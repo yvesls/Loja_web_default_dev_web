@@ -1,7 +1,7 @@
 <?php
-     require_once 'includes/cabecalho.inc';
+     require_once 'includes/cabecalho.inc.php';
 ?>
-    <form align="center" action="../controlers/controllerLogin.php" method="GET">
+    <form align="center" action="../controllers/controllerLogin.php" method="GET">
         Login: <input type="text" size="20" name="pLogin"><p>
         Senha: <input type="password" size="10" name="pSenha"><p>
         Tipo de usuário:
@@ -13,7 +13,7 @@
     </form>
 
 <?php
-     require_once 'includes/rodape.inc';
+     require_once 'includes/rodape.inc.php';
 ?>
 
 <?php

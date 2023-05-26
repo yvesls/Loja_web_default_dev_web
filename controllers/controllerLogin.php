@@ -33,7 +33,6 @@
         $logado = efetuarLogin($login, $senha);
         
         if($logado == true){
-            echo "entrou aqui";
             session_start();
             $_SESSION["logado"] = true;
             $_SESSION["tipousuario"] = '1';
