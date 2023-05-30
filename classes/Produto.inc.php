@@ -21,30 +21,35 @@
             $this->referencia = $referencia;
             $this->fabricante = $fabricante;
         }
-
-        public function getNome($nome){
-            return $this->$nome;
+        public function getProdutoId(){
+            return $this->produto_id;
         }
-        public function getDescricao($descricao){
-            return $this->$descricao;
+        public function getNome(){
+            return $this->nome;
         }
-        public function getDataFabricacao($data){
-            return $this->$data;
+        public function getDescricao(){
+            return $this->descricao;
         }
-        public function getPreco($preco){
-            return $this->$preco;
+        public function getDataFabricacao(){
+            return $this->data_fabricacao;
         }
-        public function getEstoque($estoque){
-            return $this->$estoque;
+        public function getPreco(){
+            return $this->preco;
         }
-        public function getFabricante($fabricante){
-            return $this->$fabricante;
+        public function getEstoque(){
+            return $this->estoque;
+        }
+        public function getFabricante(){
+            return $this->fabricante;
+        }
+        public function getReferencia(){
+            return $this->referencia;
         }
         public function setNome($nome){
             $this->nome = $nome;
         }   
         public function setDescricao($descricao){
-            $this->nome = $descricao;
+            $this->descricao = $descricao;
         }   
         public function setDataFabricacao($data){
             $this->data_fabricacao = strtotime($data);
