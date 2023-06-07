@@ -1,9 +1,9 @@
 <?php 
     class Produto {
-        private $produto_id;
+        private $produtoId;
         private $nome;
         private $descricao;
-        private $data_fabricacao;
+        private $dataFabricacao;
         private $preco;
         private $estoque;
         private $referencia;
@@ -15,14 +15,14 @@
         function setProduto($nome, $descricao, $data, $preco, $estoque, $referencia, $fabricante) {
             $this->nome = $nome;
             $this->descricao = $descricao;
-            $this->data_fabricacao = strtotime(str_replace('/', '-',$data));
+            $this->dataFabricacao = strtotime(str_replace('/', '-',$data));
             $this->preco = $preco;
             $this->estoque = $estoque;
             $this->referencia = $referencia;
             $this->fabricante = $fabricante;
         }
         public function getProdutoId(){
-            return $this->produto_id;
+            return $this->produtoId;
         }
         public function getNome(){
             return $this->nome;
@@ -31,7 +31,7 @@
             return $this->descricao;
         }
         public function getDataFabricacao(){
-            return $this->data_fabricacao;
+            return $this->dataFabricacao;
         }
         public function getPreco(){
             return $this->preco;
@@ -45,9 +45,6 @@
         public function getReferencia(){
             return $this->referencia;
         }
-        public function setProdutoId($produto_id){
-            $this->produto_id = $produto_id;
-        }   
         public function setNome($nome){
             $this->nome = $nome;
         }   
@@ -55,7 +52,7 @@
             $this->descricao = $descricao;
         }   
         public function setDataFabricacao($data){
-            $this->data_fabricacao = strtotime($data);
+            $this->dataFabricacao = strtotime($data);
         }   
         public function setPreco($preco){
             $this->preco = $preco;

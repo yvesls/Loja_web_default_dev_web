@@ -1,7 +1,7 @@
 <?php 
-    require_once("../classes/Produto.inc.php");
-    require_once("conexao.inc.php");
-    require_once("../utils/utils.inc.php");
+    require_once("../classes/Produto.inc");
+    require_once("conexao.inc");
+    require_once("../utils/utils.inc");
 
     class ProdutoDAO {
         private $con;
@@ -26,7 +26,6 @@
         public function atualizarProduto($produto) {
             $query = 'UPDATE produtos SET nome = :nome, data_fabricacao = :data_fabricacao, preco = :preco, estoque = :estoque, descricao = :descricao, referencia = :referencia, cod_fabricante = :cod_fabricante where produto_id = :produto_id';
             $sql = $this->con->prepare($query);
-            $sql->bindValue(':produto_id', $produto->getProdutoId());
             $sql->bindValue(':nome', $produto->getNome());
             $sql->bindValue(':data_fabricacao', converteDataMysql($produto->getDataFabricacao()));
             $sql->bindValue(':preco', $produto->getPreco());
@@ -38,9 +37,10 @@
         }
 
         public function excluirProduto($produto_id) {
-            $query = 'DELETE FROM produtos WHERE produto_id = :produto_id';
+            $produto = $this->consultarProdutoPorId($produto_id);
+            $query = 'DELETE * FROM produtos WHERE produto_id = :produto_id';
             $sql = $this->con->prepare($query);
-            $sql->bindValue(':produto_id', $produto_id);
+            $sql->bindValue(':produto_id', $produto->produto_id);
             $sql->execute();
         }
 
@@ -49,24 +49,16 @@
             $sql = $this->con->prepare($query);
             $sql->bindValue(':produto_id', $produto_id);
             $sql->execute();
-            $row = $sql->fetch(PDO::FETCH_OBJ);
-            $produto = new Produto();
-            $produto->setProdutoId($row->produto_id);
-            $produto->setNome($row->nome);
-            $produto->setDescricao($row->descricao);
-            $produto->setDataFabricacao($row->data_fabricacao);
-            $produto->setPreco($row->preco);
-            $produto->setEstoque($row->estoque);
-            $produto->setReferencia($row->referencia);
-            $produto->setFabricante($row->cod_fabricante);
-            return $produto;
+            return $sql->fetch(PDO::FETCH_OBJ);
         }
-
+        
         public function getProdutos(){
-            $resultSet = $this->con->query("select * from produtos");
+            $resultSet = $this->query("select * from produtos");
+
+            //Array dinâmico
             $lista = array();
 
-            while($row = $resultSet->fetch(PDO::FETCH_OBJ)){
+            while($row = $resultSet->fetch(PDO::FECTH_OBJ)){
                 $produto = new Produto();
                 $produto->setProdutoId($row->produto_id);
                 $produto->setNome($row->nome);
@@ -78,6 +70,6 @@
                 $produto->setFabricante($row->cod_fabricante);
                 $lista[] = $produto;
             }
-            return $lista;
+            return "Teste";
         }
     }

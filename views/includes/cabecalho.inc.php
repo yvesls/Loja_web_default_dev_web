@@ -23,17 +23,17 @@
     </li>
     <li><a href="#">Produtos</a>
             <ul>
-                  <li><a href="formProdutos.php">Cadastrar</a></li>
+                  <li><a href="Loja_web_default_dev_web/../../controllers/controllerFabricante.php?opcao=exibirTodos">Cadastrar</a></li>
                   <li><a href="#">Cadastrar Vários</a>
-                  <li><a href="#">Consultar Todos</a>
+                  <li><a href="Loja_web_default_dev_web/../../controllers/controllerProduto.php?opcao=exibirTodos">Consultar Todos</a>
                   <li><a href="#">Paginação</a>
             </ul>
       </li>
       <li><a href="#">Vendas</a>
               <ul>
-                      <li><a href="#">Relação de produtos</a></li>
-                      <li><a href="#">Ver carrinho</a></li>
-                      <li><a href="#">Esvaziar carrinho</a></li>
+                        <li><a href="#">Relação de produtos</a></li>
+                        <li><a href="#">Ver carrinho</a></li>
+                        <li><a href="#">Esvaziar carrinho</a></li>
               </ul>
         </li>
   <li><a href="contato.php">Contato</a></li>

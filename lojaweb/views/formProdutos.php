@@ -1,11 +1,9 @@
 <div align="center">
 <?php
-    require_once 'includes/cabecalho.inc.php';
-    session_start();
-
-    $fabricantes = $_SESSION['fabricantes'];
+     require_once 'includes/cabecalho.inc';
     
-    //if($_SESSION["logado"]) {
+     session_start();
+    if($_SESSION["logado"]) {
         if(isset($_REQUEST["erro"])){   //Verifica se o parâmetro "erro" existe
             if((int)($_REQUEST["erro"]) == 1){    //Captura o "erro"
                 echo("<b><font face='Verdana' size='2' color='red'>Ocorreu um erro ao inserir o produto.</font></b>");
@@ -31,23 +29,15 @@
         Quantidade em estoque: <input type="text" size="20" name="estoque"><p>
         Descrição do produto: <textarea name="descricao" rows="4" cols="50"></textarea><p>
         Número de referência: <input type="text" size="20" name="referencia"><p>
-
-        Fabricante: <select name="fabricante">
-        <option value="0">-</option>
-        <?php
-        foreach($fabricantes as $fab){
-            echo "<option value='".$fab->codigo."'>$fab->nome</option>";
-        }
-        ?>
-        </select><p>
+        Código do fabricante: <input type="text" size="20" name="fabricante"><p>
         <input type="hidden" name="opcao" value="incluir">
         <input type="submit" value="Registrar"><input type="reset" value="Cancelar">
     </form>
 
 <?php
-        require_once 'includes/rodape.inc.php';
-    //} else {
-    //    header("Location:../index.html");
-    //}
+        require_once 'includes/rodape.inc';
+    } else {
+        header("Location:../index.html");
+    }
 ?>
 </div>
