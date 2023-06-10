@@ -1,7 +1,7 @@
 - criar formulário de alterar produto. (feito na aula)
 - criar função de alterar produto no controller do produto. (feito na aula)
-- verificar funcionamento dos dois últimos. 
+- verificar funcionamento dos dois últimos. (conferido)
 
-- desafio: em exibir produto, trocar o código do fabricante pelo nome do fabricante
+- desafio: em exibir produto, trocar o código do fabricante pelo nome do fabricante (feito)
 - desafio: fazer o crud para clientes
 - 

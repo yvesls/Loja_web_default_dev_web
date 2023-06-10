@@ -8,11 +8,12 @@
         private $estoque;
         private $referencia;
         private $fabricante;
+        private $cod_fabricante;
 
         public function __construct(){
         }
 
-        function setProduto($nome, $descricao, $data, $preco, $estoque, $referencia, $fabricante) {
+        function setProduto($nome, $descricao, $data, $preco, $estoque, $referencia, $fabricante, $cod_fabricante) {
             $this->nome = $nome;
             $this->descricao = $descricao;
             $this->data_fabricacao = strtotime(str_replace('/', '-',$data));
@@ -20,6 +21,7 @@
             $this->estoque = $estoque;
             $this->referencia = $referencia;
             $this->fabricante = $fabricante;
+            $this->cod_fabricante =  $cod_fabricante;
         }
         public function getProdutoId(){
             return $this->produto_id;
@@ -41,6 +43,9 @@
         }
         public function getFabricante(){
             return $this->fabricante;
+        }
+        public function getCodFabricante(){
+            return $this->cod_fabricante;
         }
         public function getReferencia(){
             return $this->referencia;
@@ -68,6 +73,9 @@
         }
         public function setFabricante($fabricante){
             $this->fabricante = $fabricante;
+        }   
+        public function setCodFabricante($cod_fabricante){
+            $this->cod_fabricante = $cod_fabricante;
         }   
     }
 
