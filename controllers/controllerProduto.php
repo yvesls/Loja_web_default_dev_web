@@ -72,14 +72,18 @@ if ($opcao == "incluir") {
     }
 }
 
-if ($opcao == "exibirTodos") {    //Exibir todos os produtos
+if ($opcao == "exibirTodos" || $opcao == "exibirProdutosVenda") {    //Exibir todos os produtos
+
     $produtoDAO = new ProdutoDAO();
     $listaProdutos = $produtoDAO->getProdutos();
     //Coloca a lista de produtos na sessão
     session_start();
     $_SESSION["produtos"] = $listaProdutos;
-
-    header("Location: ../views/exibirProdutos.php");
+    if ($opcao == "exibirTodos") {
+        header("Location: ../views/exibirProdutos.php");
+    } else {
+        header("Location: ../views/exibirProdutosVenda.php");
+    }
 }
 
 if ($opcao == "excluir") {
