@@ -38,7 +38,7 @@ $listaProdutos = $_SESSION["produtos"];
                             <font color="black">Valor: </font>R$ <?= $produto->getPreco() ?>
                         </font>
                     </b></td>
-                <td colspan="2"><a href='#'><img src='imagens/botao_comprar2.png' border='0'></a></td>
+                <td colspan="2"><a href="../controllers/controllerCarrinho.php?opcao=inserir&id=<?= $produto->getProdutoId() ?>"><img src='imagens/botao_comprar2.png' border='0'></a></td>
             </tr>
         </table>
         <p>
