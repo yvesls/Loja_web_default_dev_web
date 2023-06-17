@@ -78,5 +78,3 @@
             $this->cod_fabricante = $cod_fabricante;
         }   
     }
-
-?>

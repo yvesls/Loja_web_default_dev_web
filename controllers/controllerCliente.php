@@ -1,6 +1,6 @@
 <?php
 require_once("../classes/Cliente.inc.php");
-require_once("../dao/clienteDAO.php");
+require_once("../dao/clienteDAO.inc.php");
 
 $opcao = $_REQUEST['opcao'];
 

@@ -9,7 +9,7 @@ $listaProdutos = $_SESSION["produtos"];
     <h1>Produtos cadastrados</h1>
     <p>
     <div align="right">
-        <img src="imagens/meu-carrinho.png" alt="carrinho de compras">
+        <a href="exibirCarrinho.php"><img src="imagens/meu-carrinho.png" alt="carrinho de compras"></a>
     </div>
 
     <?php foreach ($listaProdutos as $produto) { ?>
