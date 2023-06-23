@@ -12,6 +12,25 @@ class ClienteDAO
         $this->con = $conexao->getConexao();
     }
 
+    function efetuarLogin($login, $senha)
+    {
+        $login = strtolower($login);
+        $senha = strtolower($senha);
+        $sql = $this->con->prepare("select * from clientes where email = :user and senha = :pass");
+        $sql->bindValue(":user", $login);
+        $sql->bindValue(":pass", $senha);
+        $sql->execute();
+
+        //Conta as linhas no banco de dados
+        $cliente = null;
+        $count = $sql->rowCount();
+        if ($count == 1) {
+            $cliente = $sql->fetch(PDO::FETCH_OBJ);
+            return $cliente;
+        }
+        return $cliente;
+    }
+
     public function inserirCliente($cliente)
     {
         $cpf = $cliente->getCPF();

@@ -84,6 +84,19 @@ if ($opcao == "cadastrar") {
     }
 }
 
+if ($opcao == "logar") {
+    $login = $_REQUEST['pLogin'];
+    $senha = $_REQUEST['pSenha'];
+    $clienteDAO = new ClienteDAO();
+    $cliente = $clienteDAO->efetuarLogin($login, $senha);
+    if ($cliente != null) {
+        session_start();
+        $_SESSION["cliente"] = $cliente;
+        header("Location: ../views/dadosCompra.php");
+    } else {
+        header("Location: ../views/formLoginCliente.php?erro=1");
+    }
+}
 
 if ($opcao == "exibirTodos") {
     $clienteDAO = new ClienteDAO();

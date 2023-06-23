@@ -35,7 +35,7 @@
                               <ul>
                                     <li><a href="Loja_web_default_dev_web/../../controllers/controllerProduto.php?opcao=exibirProdutosVenda">Relação de produtos</a>
                                     <li><a href="exibirCarrinho.php">Ver carrinho</a></li>
-                                    <li><a href="#">Esvaziar carrinho</a></li>
+                                    <li><a href="Loja_web_default_dev_web/../../controllers/controllerCarrinho.php?opcao=esvaziarCarrinho">Esvaziar carrinho</a></li>
                               </ul>
                         </li>
                         <li><a href="contato.php">Contato</a></li>

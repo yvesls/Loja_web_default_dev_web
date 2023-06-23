@@ -8,7 +8,7 @@ $listaProdutos = $_SESSION["produtos"];
 <center>
     <h1>Produtos cadastrados</h1>
     <p>
-    <div align="right">
+    <div align="right" style="position: fixed; right: 0;">
         <a href="exibirCarrinho.php"><img src="imagens/meu-carrinho.png" alt="carrinho de compras"></a>
     </div>
 
