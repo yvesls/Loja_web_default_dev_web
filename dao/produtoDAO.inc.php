@@ -6,11 +6,13 @@ require_once("../utils/utils.inc.php");
 class ProdutoDAO
 {
     private $con;
+    private $porPagina;
 
     public function __construct()
     {
         $conexao = new Conexao();
         $this->con = $conexao->getConexao();
+        $this->porPagina = 10;
     }
 
     public function incluirProduto($produto)
@@ -87,5 +89,33 @@ class ProdutoDAO
             $lista[] = $produto;
         }
         return $lista;
+    }
+
+    public function getProdutosPaginacao($pagina)
+    {
+        $init = ($pagina - 1) * $this->porPagina;
+        $resultSet = $this->con->query("SELECT p.produto_id, p.nome, p.data_fabricacao, p.preco, p.estoque, p.descricao, p.referencia, f.nome nome_fabricante FROM produtos p INNER JOIN fabricantes f ON p.cod_fabricante = f.codigo LIMIT $init, $this->porPagina");
+        $lista = array();
+
+        while ($row = $resultSet->fetch(PDO::FETCH_OBJ)) {
+            $produto = new Produto();
+            $produto->setProdutoId($row->produto_id);
+            $produto->setNome($row->nome);
+            $produto->setDescricao($row->descricao);
+            $produto->setDataFabricacao($row->data_fabricacao);
+            $produto->setPreco($row->preco);
+            $produto->setEstoque($row->estoque);
+            $produto->setReferencia($row->referencia);
+            $produto->setFabricante($row->nome_fabricante);
+            $lista[] = $produto;
+        }
+        return $lista;
+    }
+
+    public function getPagina()
+    {
+        $total_result = $this->con->query("SELECT count(*) as total FROM produtos")->fetch(PDO::FETCH_OBJ);
+        $num_paginas = ceil($total_result->total / $this->porPagina);
+        return $num_paginas;
     }
 }

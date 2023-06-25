@@ -121,3 +121,14 @@ if ($opcao == "alterar") {
         header("Location:../views/formAlterarProduto.php?erro=1");
     }
 }
+
+if ($opcao == "porPagina") {
+
+    $pagina = (int) $_REQUEST["pagina"];
+    $produtoDAO = new ProdutoDAO();
+    $lista = $produtoDAO->getProdutosPaginacao($pagina);
+    $numPaginas = $produtoDAO->getPagina();
+    session_start();
+    $_SESSION["produtos"] = $lista;
+    header("Location: ../views/exibirProdutosPaginacao.php?paginas=$numPaginas");
+}

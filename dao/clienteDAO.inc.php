@@ -25,8 +25,8 @@ class ClienteDAO
         $cliente = null;
         $count = $sql->rowCount();
         if ($count == 1) {
-            $cliente = $sql->fetch(PDO::FETCH_OBJ);
-            return $cliente;
+            $resultSet = $sql->fetch(PDO::FETCH_OBJ);
+            return $this->criaRetornoCliente($resultSet);
         }
         return $cliente;
     }
@@ -75,18 +75,7 @@ class ClienteDAO
         $stmt->bindParam(':cpf', $cpf);
         $stmt->execute();
         $resultSet = $stmt->fetch(PDO::FETCH_OBJ);
-        $cliente = new Cliente();
-        $cliente->setCPF($resultSet->cpf);
-        $cliente->setNome($resultSet->nome);
-        $cliente->setLogradouro($resultSet->logradouro);
-        $cliente->setCidade($resultSet->cidade);
-        $cliente->setEstado($resultSet->estado);
-        $cliente->setCEP($resultSet->cep);
-        $cliente->setTelefone($resultSet->telefone);
-        $cliente->setDataNascimento($resultSet->data_nascimento);
-        $cliente->setEmail($resultSet->email);
-        $cliente->setRG($resultSet->rg);
-        return $cliente;
+        return $this->criaRetornoCliente($resultSet);
     }
 
     public function excluirCliente($cpf)
@@ -123,19 +112,24 @@ class ClienteDAO
         $lista = array();
 
         while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
-            $cliente = new Cliente();
-            $cliente->setCPF($row->cpf);
-            $cliente->setNome($row->nome);
-            $cliente->setLogradouro($row->logradouro);
-            $cliente->setCidade($row->cidade);
-            $cliente->setEstado($row->estado);
-            $cliente->setCEP($row->cep);
-            $cliente->setTelefone($row->telefone);
-            $cliente->setDataNascimento($row->data_nascimento);
-            $cliente->setEmail($row->email);
-            $cliente->setRG($row->rg);
-            $lista[] = $cliente;
+            $lista[] = $this->criaRetornoCliente($row);
         }
         return $lista;
+    }
+
+    function criaRetornoCliente($row)
+    {
+        $cliente = new Cliente();
+        $cliente->setCPF($row->cpf);
+        $cliente->setNome($row->nome);
+        $cliente->setLogradouro($row->logradouro);
+        $cliente->setCidade($row->cidade);
+        $cliente->setEstado($row->estado);
+        $cliente->setCEP($row->cep);
+        $cliente->setTelefone($row->telefone);
+        $cliente->setDataNascimento($row->data_nascimento);
+        $cliente->setEmail($row->email);
+        $cliente->setRG($row->rg);
+        return $cliente;
     }
 }

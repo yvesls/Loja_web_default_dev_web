@@ -26,9 +26,9 @@
                         <li><a href="#">Produtos</a>
                               <ul>
                                     <li><a href="Loja_web_default_dev_web/../../controllers/controllerFabricante.php?opcao=exibirTodos">Cadastrar</a></li>
-                                    <li><a href="#">Cadastrar Vários</a>
-                                    <li><a href="Loja_web_default_dev_web/../../controllers/controllerProduto.php?opcao=exibirTodos">Consultar Todos</a>
-                                    <li><a href="#">Paginação</a>
+                                    <li><a href="#">Cadastrar Vários</a></li>
+                                    <li><a href="Loja_web_default_dev_web/../../controllers/controllerProduto.php?opcao=exibirTodos">Consultar Todos</a></li>
+                                    <li><a href="Loja_web_default_dev_web/../../controllers/controllerProduto.php?opcao=porPagina&pagina=1">Paginação</a></li>
                               </ul>
                         </li>
                         <li><a href="#">Vendas</a>
