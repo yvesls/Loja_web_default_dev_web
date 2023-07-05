@@ -12,7 +12,7 @@
         } else if ($_REQUEST["erro"] == 2) {
             echo ("<b><font face='Verdana' size='2' color='red'>" . $_SESSION['erro2'] . "</font></b>");
         }
-    }
+    } 
 
     if (isset($_REQUEST["inclusao"])) {
         if ($_REQUEST["inclusao"] == 1) {
@@ -21,7 +21,7 @@
     }
     ?>
 
-    <form align="center" action="../controllers/controllerProduto.php" method="POST">
+    <form align="center" action="../controllers/controllerProduto.php" method="POST"  enctype="multipart/form-data">
         <h2>Cadastrar produto</h2><br><br>
         Nome: <input type="text" size="20" name="nome"><br><br>
         Data de fabricação: <input type="text" size="20" name="dataFabricacao"><br><br>
@@ -38,6 +38,10 @@
             }
             ?>
         </select>
+        <div class="form-group">
+            <label for="imagem">Foto: </label>
+            <input type="file" name="imagem" id="imagem">
+        </div>
         <p>
             <input type="hidden" name="opcao" value="incluir">
             <input type="submit" value="Registrar"><input type="reset" value="Cancelar">

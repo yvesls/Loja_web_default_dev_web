@@ -3,7 +3,7 @@ require_once("../classes/Produto.inc.php");
 require_once("../dao/produtoDAO.inc.php");
 
 $opcao = $_REQUEST['opcao'];
-
+uploadFotos($referencia);
 function validate($tipo)
 {
     if ($tipo == "alterar") {
@@ -89,6 +89,7 @@ if ($opcao == "exibirTodos" || $opcao == "exibirProdutosVenda") {    //Exibir to
 if ($opcao == "excluir") {
     $id = $_REQUEST['id'];
     $ProdutoDAO = new ProdutoDAO();
+    deletarFoto($produtoDao->getProduto($id)->getReferencia());
     $ProdutoDAO->excluirProduto($id);
     header('Location: controllers/../controllerProduto.php?opcao=exibirTodos');
 }
@@ -113,6 +114,18 @@ if ($opcao == "alterar") {
         $produto->setPreco($_POST['preco']);
         $produto->setReferencia($_POST['referencia']);
         $produtoDAO = new ProdutoDAO();
+
+        $produtoOld = $produtoDAO->consultarProdutoPorId($id);
+
+        if(isset($_FILES["imagem"]) && $_FILES["imagem"] != NULL){
+            deletarFoto($produtoOld->getReferencia());
+            uploadFotos($referencia);
+        } else {
+            if($produtoOld->getReferencia() != $referencia){
+                renomearFoto($produtoOld->getReferencia(), $referencia);
+            }
+        }
+
         $produtoDAO->atualizarProduto($produto);
         header('Location: controllers/../controllerProduto.php?opcao=exibirTodos');
     } else {
@@ -131,4 +144,36 @@ if ($opcao == "porPagina") {
     session_start();
     $_SESSION["produtos"] = $lista;
     header("Location: ../views/exibirProdutosPaginacao.php?paginas=$numPaginas");
+}
+
+function uploadFotos($ref){
+    $imagem = $_FILES["imagem"];
+    $nome = $ref;
+    
+    if($imagem != NULL) {
+        $nome_temporario=$_FILES["imagem"]["tmp_name"];
+        copy($nome_temporario,"../views/imagens/produtos/$nome.jpg");
+    }
+    else {
+        echo "Você não realizou o upload de forma satisfatória.";
+    }    
+}
+function deletarFoto($ref){
+    $arquivo = "../views/imagens/produtos/$ref.jpg";
+    if(file_exists( $arquivo )){
+        if (!unlink($arquivo)){
+            echo "Não foi possível deletar o arquivo!";
+        }
+    }
+}
+
+function renomearFoto($ref, $refNova){
+    $arquivo = "../views/imagens/produtos/$ref.jpg";
+    $arquivoNovo = "../views/imagens/produtos/$refNova.jpg";
+
+    if(file_exists( $arquivo )){
+        if (!rename($arquivo, $arquivoNovo)){
+            echo "Não foi possível renomear o arquivo!";
+        }
+    }
 }

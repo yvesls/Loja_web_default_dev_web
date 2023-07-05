@@ -11,7 +11,7 @@ if (isset($_REQUEST["erro"])) {
     }
 }
 ?>
-<form align="center" action="../controllers/controllerProduto.php" method="POST">
+ <form action="../controllers/controllerProduto.php" method="post" class="form" enctype="multipart/form-data">
     <h2>Editar produto</h2><br><br>
     <input type="hidden" name="produto_id" value="<?= $produto->getProdutoId() ?>">
     Nome: <input type="text" size="20" name="nome" value="<?= $produto->getNome() ?>"><br><br>
@@ -29,6 +29,10 @@ if (isset($_REQUEST["erro"])) {
         }
         ?>
     </select>
+    <div class="form-group">
+            <label for="imagem">Alterar foto: </label>
+            <input type="file" name="imagem" id="imagem">
+    </div>
     <p>
         <input type="hidden" name="opcao" value="alterar">
         <input type="submit" value="Registrar"><input type="reset" value="Cancelar">

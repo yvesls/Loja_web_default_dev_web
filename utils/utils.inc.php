@@ -6,4 +6,8 @@
     function formatarData($data) {
         return date('d/m/Y', $data);
     }
+
+    function formatarMoeda($num){
+        return "R$ ".number_format((float)$num, 2, ',', '.');
+    }
 ?>

@@ -85,11 +85,13 @@ if ($opcao == "cadastrar") {
 }
 
 if ($opcao == "logar") {
-    $login = $_REQUEST['pLogin'];
-    $senha = $_REQUEST['pSenha'];
-    $clienteDAO = new ClienteDAO();
-    $cliente = $clienteDAO->efetuarLogin($login, $senha);
-    if ($cliente != null) {
+    $email = $_REQUEST["email"];
+    $senha = $_REQUEST["senha"];
+
+    $clienteDAO = new clienteDAO();
+    $cliente = $clienteDAO->efetuarLogin($email, $senha);
+
+    if($cliente != null){
         session_start();
         $_SESSION["cliente"] = $cliente;
         header("Location: ../views/dadosCompra.php");

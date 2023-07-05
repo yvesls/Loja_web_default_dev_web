@@ -16,7 +16,7 @@
             <nav>
                   <ul class="menu">
                         <li><a href="index.php">Home</a></li>
-                        <li><a href="#">Quem somos?</a></li>
+                        <li><a href="quemSomos.php">Quem somos?</a></li>
                         <li><a href="#">Clientes</a>
                               <ul>
                                     <li><a href="formCliente.php">Cadastrar</a></li>
